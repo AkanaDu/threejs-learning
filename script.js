@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-13 23:20:56
+ * @LastEditTime: 2024-06-13 23:29:38
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -32,6 +32,11 @@ mesh.position.set(0.7, -0.6, 1)
 // mesh.scale.y = 0.5
 // mesh.scale.z = 0.5
 mesh.scale.set(2, 0.5, 0.5)
+
+// Rotation
+mesh.rotation.reorder('YXZ') // 重新规定rotation转换轴顺序
+mesh.rotation.y = Math.PI * 0.25
+mesh.rotation.x = Math.PI * 0.25
 
 // Axes helper
 const axes = new THREE.AxesHelper()
