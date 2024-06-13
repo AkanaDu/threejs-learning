@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-13 23:29:38
+ * @LastEditTime: 2024-06-13 23:34:49
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -54,6 +54,9 @@ camera.position.z = 3
 // camera.position.y = 1
 // camera.position.x = 1
 scene.add(camera) // 场景中添加相机
+
+// camera.lookAt(new THREE.Vector3(3, 0, 0)) // 相机看向 （3， 0， 0）坐标方向
+camera.lookAt(mesh.position) // 相机看向mesh的中心点
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
