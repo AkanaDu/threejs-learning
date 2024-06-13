@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-13 23:12:26
+ * @LastEditTime: 2024-06-13 23:20:56
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -22,8 +22,16 @@ const mesh = new THREE.Mesh(geometry, material) // 创建网格体
 // mesh.position.x = 0.7
 // mesh.position.y = - 1.6
 // mesh.position.z = 1
-mesh.position.set(0.7, -1.6, 1)
 scene.add(mesh) // 将网格体添加至场景中 
+
+// Position
+mesh.position.set(0.7, -0.6, 1)
+
+// Scale
+// mesh.scale.x = 2
+// mesh.scale.y = 0.5
+// mesh.scale.z = 0.5
+mesh.scale.set(2, 0.5, 0.5)
 
 // Axes helper
 const axes = new THREE.AxesHelper()
@@ -37,9 +45,9 @@ const sizes = {
 
 // Camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height) // 视角 长宽比 
-camera.position.z = 5
-camera.position.y = 1
-camera.position.x = 1
+camera.position.z = 3
+// camera.position.y = 1
+// camera.position.x = 1
 scene.add(camera) // 场景中添加相机
 
 // Renderer
