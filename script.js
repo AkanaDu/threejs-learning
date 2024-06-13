@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-13 21:34:55
+ * @LastEditTime: 2024-06-13 23:06:30
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -19,6 +19,10 @@ const scene = new THREE.Scene()
 const geometry = new THREE.BoxGeometry(1, 1, 1) // 创建几何体
 const material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true }) // 创建 材质
 const mesh = new THREE.Mesh(geometry, material) // 创建网格体
+// mesh.position.x = 0.7
+// mesh.position.y = - 1.6
+// mesh.position.z = 1
+mesh.position.set(0.7, -1.6, 1)
 scene.add(mesh) // 将网格体添加至场景中 
 
 // Size
