@@ -1,0 +1,17 @@
+{
+  "name": "threejs-learning",
+  "version": "1.0.0",
+  "description": "THREE.js学习用项目",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vite": "^5.2.13"
+  }
+}
