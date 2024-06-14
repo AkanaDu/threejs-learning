@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-14 13:54:38
+ * @LastEditTime: 2024-06-14 13:55:41
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -38,20 +38,18 @@ const renderer = new THREE.WebGLRenderer({
 }) // 创建渲染器 
 renderer.setSize(sizes.width, sizes.height) // 设置绘画高度
 
-let time = Date.now()
-console.log("🚀 ~ time:", time)
+// Clock
+const clock = new THREE.Clock()
 
 // Animations
 const tick = () => {
   // Time
-  const currentTime = Date.now()
-  const deltaTime = currentTime - time
-  time = currentTime 
+  const elapsedTime = clock.getElapsedTime()
   
   // Update object
-  mesh.rotation.x += 0.001 * deltaTime
-  mesh.rotation.y += 0.001 * deltaTime
-  mesh.rotation.z += 0.001 * deltaTime
+  mesh.rotation.x = elapsedTime
+  mesh.rotation.y = elapsedTime
+  mesh.rotation.z = elapsedTime
 
   // Render
   renderer.render(scene, camera)
