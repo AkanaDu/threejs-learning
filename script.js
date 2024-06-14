@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-13 21:34:55
+ * @LastEditTime: 2024-06-14 13:40:11
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -37,5 +37,18 @@ const renderer = new THREE.WebGLRenderer({
   canvas 
 }) // 创建渲染器 
 renderer.setSize(sizes.width, sizes.height) // 设置绘画高度
-renderer.render(scene, camera)
+
+
+// Animations
+const tick = () => { 
+  // Update object
+  mesh.rotation.x += 0.01
+  mesh.rotation.y += 0.01
+  mesh.rotation.z += 0.01
+  // Render
+  renderer.render(scene, camera)
+  window.requestAnimationFrame(tick)
+}
+
+tick()
 
