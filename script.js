@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-17 22:50:06
+ * @LastEditTime: 2024-06-17 22:54:03
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -78,8 +78,9 @@ const tick = () => {
   // mesh.rotation.z = elapsedTime
 
   // Update camera
-  camera.position.x = cursor.x * 3
-  camera.position.y = cursor.y * 3
+  camera.position.x = cursor.x * 10
+  camera.position.y = cursor.y * 10
+  camera.lookAt(new THREE.Vector3()) // 或者使用mesh.position 因为都是0 0 0 
 
   // Render
   renderer.render(scene, camera)
