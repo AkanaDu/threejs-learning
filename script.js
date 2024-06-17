@@ -2,12 +2,12 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-17 23:05:35
+ * @LastEditTime: 2024-06-17 23:28:33
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import * as THREE from 'three'
-import { Wireframe } from 'three/examples/jsm/Addons.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 // Size
 const sizes = { 
@@ -58,6 +58,10 @@ camera.position.z = 3
 camera.lookAt(mesh.position)
 scene.add(camera) // 场景中添加相机
 
+// Controls
+const controls = new OrbitControls(camera, canvas) // 使用轨道控制器控制camera
+controls.enableDamping = true // 开启轨道阻尼
+
 // Renderer
 const renderer = new THREE.WebGLRenderer({
   canvas 
@@ -80,11 +84,14 @@ const tick = () => {
   // Update camera
   // camera.position.x = cursor.x * 10
   // camera.position.y = cursor.y * 10
-  camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 3
-  camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 3
-  camera.position.y = cursor.y * 10
-  camera.lookAt(new THREE.Vector3()) // 或者使用mesh.position 因为都是0 0 0 
-
+  // camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 3
+  // camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 3
+  // camera.position.y = cursor.y * 10
+  // camera.lookAt(new THREE.Vector3()) // 或者使用mesh.position 因为都是0 0 0
+  
+  // Controls
+  controls.update()
+  
   // Render
   renderer.render(scene, camera)
   window.requestAnimationFrame(tick)
