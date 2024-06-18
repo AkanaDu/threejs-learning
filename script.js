@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-18 11:44:36
+ * @LastEditTime: 2024-06-18 14:04:36
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -15,6 +15,21 @@ const sizes = {
   height: window.innerHeight
 }
 
+// Resize
+window.addEventListener('resize', () => { 
+  console.log('window has been resized')
+  // Update sizes
+  sizes.width = window.innerWidth
+  sizes.height = window.innerHeight
+
+  // Update camera
+  camera.aspect = sizes.width / sizes.height
+  camera.updateMatrix()
+
+  // Update renderer
+  renderer.setSize(sizes.width, sizes.height)
+})
+
 // Cursor
 const cursor = {
   x: 0,
@@ -23,7 +38,6 @@ const cursor = {
 window.addEventListener('mousemove', (event) => { 
   cursor.x = (event.clientX / sizes.width - 0.5)
   cursor.y = - (event.clientY / sizes.height - 0.5)
-  console.log(cursor.x)
 })
 
 // Canvas
