@@ -67,7 +67,7 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 // Object
-const geometry = new THREE.BoxGeometry(1, 1, 1) // 创建几何体
+const geometry = new THREE.BoxGeometry(1, 1, 1, 4, 4, 4) // 创建几何体 长宽高 后面是将面分割成更多的三角形的参数
 const material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true }) // 创建 材质
 const mesh = new THREE.Mesh(geometry, material) // 创建网格体
 scene.add(mesh) // 将网格体添加至场景中 
