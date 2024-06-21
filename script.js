@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-21 15:30:57
+ * @LastEditTime: 2024-06-21 15:48:52
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -14,7 +14,22 @@ import gsap from 'gsap'
 import GUI from 'lil-gui' 
 
 // Debug
-const gui = new GUI()
+const gui = new GUI({
+  width: 300,
+  title: 'DebugUI',
+  closeFolders: false
+})
+// gui.close() // 收起gui
+gui.hide() // 隐藏gui
+// gui.show() // 显示gui
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'h') {
+    gui.show(gui._hidden) // 按h显隐gui
+  }
+})
+
+
 const debugObject = {}
 // Size
 const sizes = { 
