@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-21 15:04:33
+ * @LastEditTime: 2024-06-21 15:25:31
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -73,11 +73,11 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
-debugObject.color = '#530048'
+debugObject.color = '#df0cb1'
 
 // Object
-const geometry = new THREE.BoxGeometry(1, 1, 1) // 创建几何体
-const material = new THREE.MeshBasicMaterial({ color: debugObject.color}) // 创建 材质
+const geometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2) // 创建几何体
+const material = new THREE.MeshBasicMaterial({ color: debugObject.color, wireframe: true}) // 创建 材质
 const mesh = new THREE.Mesh(geometry, material) // 创建网格体
 scene.add(mesh) // 将网格体添加至场景中 
 
@@ -94,8 +94,15 @@ gui.addColor(debugObject, 'color').onChange((value) => {
 debugObject.spin = () => {
   gsap.to(mesh.rotation, { y: mesh.rotation.y + Math.PI * 2 })
 }
-
 gui.add(debugObject, 'spin')
+
+// gui.add(geometry, 'widthSegments') // 这个不能直接使用
+debugObject.subdivision = 2
+gui.add(debugObject, 'subdivision').min(1).max(20).step(1).onFinishChange(value => {
+  // 避免内存泄漏，首先销毁原来的几何体
+  mesh.geometry.dispose()
+  mesh.geometry = new THREE.BoxGeometry(1, 1, 1, value,value,value)
+}) // 划分
 
 // Camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height) // 视角 长宽比 
@@ -109,9 +116,9 @@ const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height) // �
 //   0.1,
 //   100
 // )
-// camera.position.x = 2
-// camera.position.y = 2
-camera.position.z = 3
+camera.position.x = 1
+camera.position.y = 1
+camera.position.z = 2
 camera.lookAt(mesh.position)
 scene.add(camera) // 场景中添加相机
 
