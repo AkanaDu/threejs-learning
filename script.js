@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-21 15:25:31
+ * @LastEditTime: 2024-06-21 15:30:57
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -81,24 +81,26 @@ const material = new THREE.MeshBasicMaterial({ color: debugObject.color, wirefra
 const mesh = new THREE.Mesh(geometry, material) // 创建网格体
 scene.add(mesh) // 将网格体添加至场景中 
 
+const cubeTweaks = gui.addFolder('可配置的立方体')
+cubeTweaks.close() // 收起控制项目
 // gui.add(mesh.position, 'y', -3, 3, 0.01)
-gui.add(mesh.position, 'y').min(-3).max(3).step(0.01).name('elevation') // 作用同上，但是可以修改名称，将y修改为elevation
-gui.add(mesh, 'visible') // 更改显示
-gui.add(material, 'wireframe') // 更换材质
-gui.addColor(debugObject, 'color').onChange((value) => {
+cubeTweaks.add(mesh.position, 'y').min(-3).max(3).step(0.01).name('elevation') // 作用同上，但是可以修改名称，将y修改为elevation
+cubeTweaks.add(mesh, 'visible') // 更改显示
+cubeTweaks.add(material, 'wireframe') // 更换材质
+cubeTweaks.addColor(debugObject, 'color').onChange((value) => {
   // console.log('颜色value已经被改变')
   // console.log(value.getHexString())
   material.color.set(debugObject.color)
 })
 
-debugObject.spin = () => {
+debugObject.spin = () => { 
   gsap.to(mesh.rotation, { y: mesh.rotation.y + Math.PI * 2 })
 }
-gui.add(debugObject, 'spin')
+cubeTweaks.add(debugObject, 'spin')
 
-// gui.add(geometry, 'widthSegments') // 这个不能直接使用
+// cubeTweaks.add(geometry, 'widthSegments') // 这个不能直接使用
 debugObject.subdivision = 2
-gui.add(debugObject, 'subdivision').min(1).max(20).step(1).onFinishChange(value => {
+cubeTweaks.add(debugObject, 'subdivision').min(1).max(20).step(1).onFinishChange(value => {
   // 避免内存泄漏，首先销毁原来的几何体
   mesh.geometry.dispose()
   mesh.geometry = new THREE.BoxGeometry(1, 1, 1, value,value,value)
