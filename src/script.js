@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-24 17:08:34
+ * @LastEditTime: 2024-06-24 17:20:45
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -27,20 +27,19 @@ loadingManager.onLoaded = () => {
   console.log('on loaded')
 }
 loadingManager.onProgress = () => {
-  console.log('on progress')
+  console.log('on progress') 
 }
 loadingManager.onError = () => {
   console.log('on error')
 }
 const textureLoader = new THREE.TextureLoader(loadingManager)
-const texture = textureLoader.load('/color.jpg', () => {
-  console.log('load')
-}, () => {
-  // 建议是不使用这个
-  console.log('progress')
-}, () => {
-  console.log('材质加载失败！')
-})
+const colorTexture = textureLoader.load('/color.jpg')
+const alphaTexture = textureLoader.load('/alpha.jpg')
+const heightTexture = textureLoader.load('/height.jpg')
+const normalTexture = textureLoader.load('/normal.jpg')
+const ambientOcclusionTexture = textureLoader.load('/ambientOcclusion.jpg')
+const metalnessTexture = textureLoader.load('/metalness.jpg')
+const roughnessTexture = textureLoader.load('/roughness.jpg')
 // textureLoader可以加载多种材质 例如再增加一个材质也是可以的
 // const texture2 = textureLoader.load('/color2.jpg')
 
@@ -104,7 +103,7 @@ const scene = new THREE.Scene()
 
 // Object
 const geometry = new THREE.BoxGeometry(1, 1, 1) // 创建几何体
-const material = new THREE.MeshBasicMaterial({ map: texture }) // 创建 材质
+const material = new THREE.MeshBasicMaterial({ map: colorTexture }) // 创建 材质
 const mesh = new THREE.Mesh(geometry, material) // 创建网格体
 scene.add(mesh) // 将网格体添加至场景中 
 
