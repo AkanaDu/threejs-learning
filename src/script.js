@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-28 13:27:37
+ * @LastEditTime: 2024-06-28 13:32:55
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -34,7 +34,7 @@ loadingManager.onError = () => {
 }
 const textureLoader = new THREE.TextureLoader(loadingManager)
 // const colorTexture = textureLoader.load('/color.jpg')
-const colorTexture = textureLoader.load('/checkerboard-1024x1024.png')
+const colorTexture = textureLoader.load('/checkerboard-8x8.png')
 // const alphaTexture = textureLoader.load('/alpha.jpg')
 // const heightTexture = textureLoader.load('/height.jpg')
 // const normalTexture = textureLoader.load('/normal.jpg')
@@ -45,10 +45,10 @@ const colorTexture = textureLoader.load('/checkerboard-1024x1024.png')
 // const texture2 = textureLoader.load('/color2.jpg')
 
 // 设置材质的UV
-colorTexture.repeat.x = 2
-colorTexture.repeat.y = 3
-colorTexture.wrapS = THREE.MirroredRepeatWrapping // S镜像
-colorTexture.wrapT = THREE.MirroredRepeatWrapping // T镜像
+// colorTexture.repeat.x = 2
+// colorTexture.repeat.y = 3
+// colorTexture.wrapS = THREE.MirroredRepeatWrapping // S镜像
+// colorTexture.wrapT = THREE.MirroredRepeatWrapping // T镜像
 // 材质偏移
 // colorTexture.offset.x = 0.5
 // colorTexture.offset.y = 0.5
@@ -57,7 +57,8 @@ colorTexture.wrapT = THREE.MirroredRepeatWrapping // T镜像
 // 材质轴旋转
 // colorTexture.center.x = 0.5
 // colorTexture.center.y = 0.5
-colorTexture.minFilter = THREE.NearestFilter // 纹理会变得十分清晰
+// colorTexture.minFilter = THREE.NearestFilter // 纹理会变得十分清晰
+colorTexture.magFilter = THREE.NearestFilter // 纹理会变得十分锐利
 
 
 // Size
