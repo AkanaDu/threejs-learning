@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-24 17:20:45
+ * @LastEditTime: 2024-06-27 17:04:23
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -34,15 +34,28 @@ loadingManager.onError = () => {
 }
 const textureLoader = new THREE.TextureLoader(loadingManager)
 const colorTexture = textureLoader.load('/color.jpg')
-const alphaTexture = textureLoader.load('/alpha.jpg')
-const heightTexture = textureLoader.load('/height.jpg')
-const normalTexture = textureLoader.load('/normal.jpg')
-const ambientOcclusionTexture = textureLoader.load('/ambientOcclusion.jpg')
-const metalnessTexture = textureLoader.load('/metalness.jpg')
-const roughnessTexture = textureLoader.load('/roughness.jpg')
+// const alphaTexture = textureLoader.load('/alpha.jpg')
+// const heightTexture = textureLoader.load('/height.jpg')
+// const normalTexture = textureLoader.load('/normal.jpg')
+// const ambientOcclusionTexture = textureLoader.load('/ambientOcclusion.jpg')
+// const metalnessTexture = textureLoader.load('/metalness.jpg')
+// const roughnessTexture = textureLoader.load('/roughness.jpg')
 // textureLoader可以加载多种材质 例如再增加一个材质也是可以的
 // const texture2 = textureLoader.load('/color2.jpg')
 
+// 设置材质的UV
+colorTexture.repeat.x = 2
+colorTexture.repeat.y = 3
+colorTexture.wrapS = THREE.MirroredRepeatWrapping // S镜像
+colorTexture.wrapT = THREE.MirroredRepeatWrapping // T镜像
+// 材质偏移
+// colorTexture.offset.x = 0.5
+// colorTexture.offset.y = 0.5
+// 材质旋转
+colorTexture.rotation = Math.PI / 4
+// 材质轴旋转
+colorTexture.center.x = 0.5
+colorTexture.center.y = 0.5
 
 // Size
 const sizes = { 
