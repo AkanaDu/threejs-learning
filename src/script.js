@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-27 17:04:23
+ * @LastEditTime: 2024-06-28 13:24:50
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -52,10 +52,12 @@ colorTexture.wrapT = THREE.MirroredRepeatWrapping // T镜像
 // colorTexture.offset.x = 0.5
 // colorTexture.offset.y = 0.5
 // 材质旋转
-colorTexture.rotation = Math.PI / 4
+// colorTexture.rotation = Math.PI / 4
 // 材质轴旋转
-colorTexture.center.x = 0.5
-colorTexture.center.y = 0.5
+// colorTexture.center.x = 0.5
+// colorTexture.center.y = 0.5
+colorTexture.minFilter = THREE.NearestFilter // 纹理会变得十分清晰
+
 
 // Size
 const sizes = { 
