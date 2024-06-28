@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-18 17:20:36
+ * @LastEditTime: 2024-06-28 17:01:38
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -67,12 +67,31 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 // Object
-const geometry = new THREE.BoxGeometry(1, 1, 1) // 创建几何体
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true }) // 创建 材质
-const mesh = new THREE.Mesh(geometry, material) // 创建网格体
-scene.add(mesh) // 将网格体添加至场景中 
+// const geometry = new THREE.BoxGeometry(1, 1, 1) // 创建几何体
+// const material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true }) // 创建 材质
+// const mesh = new THREE.Mesh(geometry, material) // 创建网格体
+// scene.add(mesh) // 将网格体添加至场景中 
 
+// Material
+const material = new THREE.MeshBasicMaterial({color: 0xff0000})
+const sphere = new THREE.Mesh(
+  new THREE.SphereGeometry(0.5, 16, 16),
+  material
+)
+sphere.position.x = 1.5
 
+const plane = new THREE.Mesh(
+  new THREE.PlaneGeometry(1, 1),
+  material
+)
+
+const torus = new THREE.Mesh( 
+  new THREE.TorusGeometry(0.3, 0.2, 16, 32),
+  material
+)
+torus.position.x = -1.5
+
+scene.add(sphere, plane, torus)
 
 // Camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height) // 视角 长宽比 
@@ -89,7 +108,7 @@ const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height) // �
 // camera.position.x = 2
 // camera.position.y = 2
 camera.position.z = 3
-camera.lookAt(mesh.position)
+// camera.lookAt(mesh.position)
 scene.add(camera) // 场景中添加相机
 
 // Controls
