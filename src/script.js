@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-28 13:24:50
+ * @LastEditTime: 2024-06-28 13:27:37
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -33,7 +33,8 @@ loadingManager.onError = () => {
   console.log('on error')
 }
 const textureLoader = new THREE.TextureLoader(loadingManager)
-const colorTexture = textureLoader.load('/color.jpg')
+// const colorTexture = textureLoader.load('/color.jpg')
+const colorTexture = textureLoader.load('/checkerboard-1024x1024.png')
 // const alphaTexture = textureLoader.load('/alpha.jpg')
 // const heightTexture = textureLoader.load('/height.jpg')
 // const normalTexture = textureLoader.load('/normal.jpg')
