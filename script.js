@@ -2,13 +2,21 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-28 17:01:38
+ * @LastEditTime: 2024-06-28 18:20:46
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
+// Textures
+const textureLoader = new THREE.TextureLoader()
+const doorColorTexture = textureLoader.load('/static/door/color.jpg')
+const matcapTexture = textureLoader.load('/static/matcaps/1.png')
+const gradientTexture = textureLoader.load('/static/matcaps/2.png')
+
+// const doorColorTexture = textureLoader.load('/door/color.jpg')
+// const doorColorTexture = textureLoader.load('/door/color.jpg')
 // Size
 const sizes = { 
   width: window.innerWidth,
@@ -73,7 +81,11 @@ const scene = new THREE.Scene()
 // scene.add(mesh) // 将网格体添加至场景中 
 
 // Material
-const material = new THREE.MeshBasicMaterial({color: 0xff0000})
+// const material = new THREE.MeshBasicMaterial({
+//   map: doorColorTexture
+// })
+const material = new THREE.MeshNormalMaterial() // 法线材质贴图
+
 const sphere = new THREE.Mesh(
   new THREE.SphereGeometry(0.5, 16, 16),
   material
