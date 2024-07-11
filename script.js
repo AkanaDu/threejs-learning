@@ -2,7 +2,7 @@
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
  * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-07-02 13:30:34
+ * @LastEditTime: 2024-07-02 13:41:00
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -84,8 +84,10 @@ const scene = new THREE.Scene()
 // const material = new THREE.MeshBasicMaterial({
 //   map: doorColorTexture
 // })
-const material = new THREE.MeshNormalMaterial() // 法线材质贴图
-material.flatShading = true
+// const material = new THREE.MeshNormalMaterial() // 法线材质贴图
+// material.flatShading = true
+const material = new THREE.MeshMatcapMaterial()
+material.matcap = matcapTexture
 
 const sphere = new THREE.Mesh(
   new THREE.SphereGeometry(0.5, 16, 16),
