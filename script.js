@@ -1,13 +1,19 @@
 /*
  * @Author: Du.Kang banshee1115@163.com
  * @Date: 2024-06-13 20:47:38
- * @LastEditors: AkanaDu banshee1115@163.com
- * @LastEditTime: 2024-11-20 14:21:38
+ * @LastEditors: Du.Kang banshee1115@163.com
+ * @LastEditTime: 2024-06-21 14:42:44
  * @FilePath: /threejs-learning/script.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
+import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+// import gsap from 'gsap'
+import GUI from "lil-gui";
+
+// Debug
+const gui = new GUI();
 
 // Size
 const sizes = {
@@ -69,9 +75,18 @@ const scene = new THREE.Scene();
 
 // Object
 const geometry = new THREE.BoxGeometry(1, 1, 1); // 创建几何体
-const material = new THREE.MeshBasicMaterial({ color: 0xffffff }); // 创建 材质
+const material = new THREE.MeshBasicMaterial({ color: 0xe875e5 }); // 创建 材质
 const mesh = new THREE.Mesh(geometry, material); // 创建网格体
 scene.add(mesh); // 将网格体添加至场景中
+
+// gui.add(mesh.position, 'y', -3, 3, 0.01)
+gui.add(mesh.position, "y").min(-3).max(3).step(0.01).name("elevation"); // 作用同上，但是可以修改名称，将y修改为elevation
+gui.add(mesh, "visible"); // 更改显示
+gui.add(material, "wireframe"); // 更换材质
+gui.addColor(material, "color").onChange((value) => {
+  console.log("颜色value已经被改变");
+  console.log(value.getHexString());
+});
 
 // Camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height); // 视角 长宽比
