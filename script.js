@@ -1,16 +1,9 @@
-/*
- * @Author: Du.Kang banshee1115@163.com
- * @Date: 2024-06-13 20:47:38
- * @LastEditors: Du.Kang banshee1115@163.com
- * @LastEditTime: 2024-06-21 14:42:44
- * @FilePath: /threejs-learning/script.js
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 import "./style.css";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-// import gsap from 'gsap'
 import GUI from "lil-gui";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
 // Debug
 const gui = new GUI();
@@ -73,20 +66,45 @@ const canvas = document.querySelector("canvas.webgl");
 // Scene
 const scene = new THREE.Scene();
 
-// Object
-const geometry = new THREE.BoxGeometry(1, 1, 1); // 创建几何体
-const material = new THREE.MeshBasicMaterial({ color: 0xe875e5 }); // 创建 材质
-const mesh = new THREE.Mesh(geometry, material); // 创建网格体
-scene.add(mesh); // 将网格体添加至场景中
+const fontLoader = new FontLoader();
+fontLoader.load(
+  "/static/fonts/helvetiker_regular.typeface.json",
+  function (font) {
+    const textGeometry = new TextGeometry("C I T I C", {
+      font: font,
+      size: 80,
+      depth: 5,
+      curveSegments: 6,
+      bevelEnabled: true,
+      bevelThickness: 10,
+      bevelSize: 8,
+      bevelOffset: 0,
+      bevelSegments: 3,
+    });
+    const textMaterial = new THREE.MeshBasicMaterial({ color: "red" });
+    textMaterial.wireframe = true;
+    const textMesh = new THREE.Mesh(textGeometry, textMaterial); // 创建网格体
+    scene.add(textMesh); // 将网格体添加至场景中
+  }
+);
 
-// gui.add(mesh.position, 'y', -3, 3, 0.01)
-gui.add(mesh.position, "y").min(-3).max(3).step(0.01).name("elevation"); // 作用同上，但是可以修改名称，将y修改为elevation
-gui.add(mesh, "visible"); // 更改显示
-gui.add(material, "wireframe"); // 更换材质
-gui.addColor(material, "color").onChange((value) => {
-  console.log("颜色value已经被改变");
-  console.log(value.getHexString());
-});
+const axes = new THREE.AxesHelper();
+scene.add(axes);
+
+// Object
+// const geometry = new THREE.BoxGeometry(1, 1, 1); // 创建几何体
+// const material = new THREE.MeshBasicMaterial({ color: 0xe875e5 }); // 创建 材质
+// const mesh = new THREE.Mesh(geometry, material); // 创建网格体
+// scene.add(mesh); // 将网格体添加至场景中
+
+// // gui.add(mesh.position, 'y', -3, 3, 0.01)
+// gui.add(mesh.position, "y").min(-3).max(3).step(0.01).name("elevation"); // 作用同上，但是可以修改名称，将y修改为elevation
+// gui.add(mesh, "visible"); // 更改显示
+// gui.add(material, "wireframe"); // 更换材质
+// gui.addColor(material, "color").onChange((value) => {
+//   console.log("颜色value已经被改变");
+//   console.log(value.getHexString());
+// });
 
 // Camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height); // 视角 长宽比
@@ -103,7 +121,7 @@ const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height); // �
 // camera.position.x = 2
 // camera.position.y = 2
 camera.position.z = 3;
-camera.lookAt(mesh.position);
+// camera.lookAt(textMesh.position);
 scene.add(camera); // 场景中添加相机
 
 // Controls
